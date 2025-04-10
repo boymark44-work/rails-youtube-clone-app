@@ -1,24 +1,9 @@
-# README
+# README 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+### This repo contains the code while following the tutorial from Malachi Rails. 
 
-* Ruby version
+#### See this link to the tutorial: https://www.youtube.com/watch?v=F-eI4MXnyPA&list=PLR8BLHNyVZDVkZHDbm2mSL4RMISIBuBqs&index=4
 
-* System dependencies
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+#### Link to the Site: (Status: Ongoing)
