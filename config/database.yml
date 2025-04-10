@@ -1,0 +1,22 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  username: postgres
+  password: <%= Rails.application.credentials.database_password %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: rails_youtube_clone_development
+
+test:
+  <<: *default
+  database: rails_youtube_clone_test
+
+production:
+  <<: *default
+  database: rails_youtube_clone_production
+  username: <%= ENV['PG_USERNAME'] %>
+  password: <%= ENV['PG_PASSWORD'] %>
+  host: <%= ENV['PG_HOST'] %>
