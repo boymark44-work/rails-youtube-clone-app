@@ -10,11 +10,17 @@
     <%= javascript_importmap_tags %>
 
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <%# <link rel="stylesheet" href="https://cdn.simplecss.org/simple.css"> %>
   </head>
 
   <body>
     <%# Render the Navbar %>
     <%= render 'layouts/navbar' %>
+
+    <%# Flash Messages for User Authentication from Devise %>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
 
     <%= yield %>
 
