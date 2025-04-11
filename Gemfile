@@ -15,6 +15,7 @@ gem "bootsnap", require: false
 
 # Custom Gems: 
 gem "devise", '~> 4.9', '>= 4.9.4'
+gem 'ostruct', '~> 0.6.1' # To silence a particular error. 
 
 
 group :development, :test do

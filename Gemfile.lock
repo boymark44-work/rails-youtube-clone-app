@@ -170,6 +170,7 @@ GEM
     nokogiri (1.18.7-x86_64-linux-musl)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    ostruct (0.6.1)
     pg (1.5.9)
     pp (0.6.2)
       prettyprint
@@ -289,6 +290,7 @@ DEPENDENCIES
   devise (~> 4.9, >= 4.9.4)
   importmap-rails
   jbuilder
+  ostruct (~> 0.6.1)
   pg (~> 1.5, >= 1.5.9)
   puma (>= 5.0)
   rails (~> 7.1.2)
