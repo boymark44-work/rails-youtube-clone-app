@@ -7,16 +7,32 @@ class PostsController < ApplicationController
   end
 
   # GET /posts/1 or /posts/1.json
+  # To prevent unnecessary database queries, preload attachments in the show action: 
   def show
+    @post = Post.includes(video_attachment: :blob, image_attachment: :blob).find(params[:id])
   end
+
   
   # GET /posts/new
   def new
     @post = Post.new
   end
 
+  # Download video
   def download
-    
+    # Fetch the post by its ID
+    @post = Post.find(params[:id])
+
+    # Ensure a video or image is attached before proceeding
+    if @post.video.attached?
+      send_data @post.video.download, filename: @post.video.filename.to_s
+    elsif @post.image.attached?
+      send_data @post.image.download, filename: @post.image.filename.to_s
+    else 
+      flash[:alert] = "No file is attached for download."
+      redirect_to post_path(@post) # Redirect to post page if no attachments
+    end
+
   end
 
   # GET /posts/1/edit
