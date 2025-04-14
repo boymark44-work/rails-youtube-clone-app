@@ -9,4 +9,15 @@
     <%= post.description %>
   </p>
 
+<% if post.image.attached? %>
+  <%= image_tag(post.image, style: "height: 100px; width: 100px") %>
+<% end %>
+
+<% if post.video.attached? %>
+  <video controls>
+    <source src="<%= url_for(post.video) %>" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+<% end %>
+
 </div>
