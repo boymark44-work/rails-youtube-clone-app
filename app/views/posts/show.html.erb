@@ -10,7 +10,7 @@
           Your browser does not support the video tag.
         </video>
       </div>
-      <h2 class="text-1xl post-details">
+      <h2 class="text-2xl post-details">
         Uploaded <%= time_ago_in_words(@post.created_at) %> ago
       </h2>
     <% elsif @post.image.attached? %>
@@ -21,17 +21,18 @@
   <!-- Post Details and User Actions Section -->
   <div class="overlay xl:text-align:left;">
     <div class="overlay-content">
+    <div class="overlay-content">
       <h2 class="text-5xl post-details"><%= @post.title %></h2>
-      <h2 class="text-2xl post-details"><%#= @post.hits %> views</h2>
-      <p class="post-details">Posted by <%#= @post.user.full_name %></p>
-    </div>
+      <h2 class="text-2xl post-details"><%= @post.description %></h2>
+      <h2 class="text-2xl post-details">Views: <%#= @post.hits views</h2> %> 
+      <p class="post-details">Posted by: Sekret <%#= @post.user.full_name %></p> 
     <br>
     
     <% if @post.video.attached? || @post.image.attached? %>
       <%= link_to 'Download', download_post_path(@post), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
     <% end %>
 
-    <% if current_user %>
+    <!-- <% if current_user %>
       <% if current_user.likes?(@post) %>
         <% unlike_button = button_to image_tag("heart-icon.svg", style: "height: 20px;"), 
           like_path(@post.likes.find_by(user_id: current_user)), 
@@ -61,7 +62,7 @@
           method: :delete, 
           class: "rounded-lg py-3 px-5 bg-gray-100 font-medium" 
         %>
-      <% end %>
+      <% end %> -->
     <% end %>
   </div>
 </div>
@@ -69,7 +70,7 @@
 <!-- Styles -->
 <style>
   .youtube-layout {
-    width: 65%;
+    width: 100%;
     margin: 0 auto;
   }
 
