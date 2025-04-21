@@ -1,7 +1,6 @@
-<%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+<%= stylesheet_link_tag "application", "data-turbo-track": "reload", defer:true %>
 
 <div class="grid lg:grid-cols-2 grid-cols-1 mt-4 px-4">
-  <!-- Video or Image Display Section -->
   <div class="youtube-layout">
     <% if @post.video.attached? %>
       <div class="video-container">
@@ -10,67 +9,52 @@
           Your browser does not support the video tag.
         </video>
       </div>
-      <h2 class="text-2xl post-details">
+      <h2 class="text-1xl post-details">
         Uploaded <%= time_ago_in_words(@post.created_at) %> ago
       </h2>
-    <% elsif @post.image.attached? %>
-      <%= image_tag(@post.image, class: "thumbnail") %>
+    <% else %>
+      <% if @post.image.attached? %>
+        <%= image_tag(@post.image, class: "thumbnail") %>
+      <% end %>
     <% end %>
   </div>
 
-  <!-- Post Details and User Actions Section -->
   <div class="overlay xl:text-align:left;">
     <div class="overlay-content">
-    <div class="overlay-content">
       <h2 class="text-5xl post-details"><%= @post.title %></h2>
-      <h2 class="text-2xl post-details"><%= @post.description %></h2>
-      <h2 class="text-2xl post-details">Views: <%#= @post.hits views</h2> %> 
-      <p class="post-details">Posted by: Sekret <%#= @post.user.full_name %></p> 
+      <h2 class="post-details">Description: <%= @post.description %></h2>
+      <h2 class="post-details">Posted by: <%= @post.user.email %></h2>
+      <h2 class="text-2xl post-details"><%#= @post.hits %> views</h2>
+
+      <!-- <p class="post-details">
+        Posted by <%#= @post.user.full_name %>
+      </p> -->
+    </div>
     <br>
-    
+
     <% if @post.video.attached? || @post.image.attached? %>
       <%= link_to 'Download', download_post_path(@post), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
     <% end %>
 
-    <!-- <% if current_user %>
-      <% if current_user.likes?(@post) %>
-        <% unlike_button = button_to image_tag("heart-icon.svg", style: "height: 20px;"), 
-          like_path(@post.likes.find_by(user_id: current_user)), 
-          method: :delete, 
-          class: "mt-2 rounded-lg py-3 px-5 mt-5 bg-gray-100 inline-block font-medium" 
-        %>
-        <%= unlike_button %>
-      <% else %>
-        <% like_button = button_to image_tag("heart.svg", style: "height: 20px;"), 
-          likes_path, 
-          params: { like: { post_id: @post.id } }, 
-          method: :post, 
-          class: "mt-2 rounded-lg py-3 px-5 mt-5 bg-gray-100 inline-block font-medium" 
-        %>
-        <%= like_button %>
-      <% end %>
-      
-      <h2 class="text-1xl post-details">Likes: <%= @post.likes.count %></h2>
+    <% if current_user && current_user.id == @post.user_id %>
+      <div class="mt-4 flex gap-4">
+        <%= link_to "Edit", edit_post_path(@post), 
+              class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
 
-      <% if @post.user_id == current_user.id %>
-        <%= link_to image_tag("edit.svg", style: "height: 20px;"), 
-          edit_post_path(@post), 
-          class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block" 
-        %>
-        <%= button_to image_tag("delete.svg", style: "height: 20px;"), 
-          post_path(@post), 
-          method: :delete, 
-          class: "rounded-lg py-3 px-5 bg-gray-100 font-medium" 
-        %>
-      <% end %> -->
+        <%= button_to "Delete", post_path(@post), 
+              method: :delete,
+              data: { confirm: "Are you sure you want to delete this post?" },
+              class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+      </div>
     <% end %>
+
+
   </div>
 </div>
 
-<!-- Styles -->
 <style>
   .youtube-layout {
-    width: 100%;
+    width: 65%;
     margin: 0 auto;
   }
 
