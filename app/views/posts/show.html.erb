@@ -32,22 +32,21 @@
     </div>
     <br>
 
-    <% if @post.video.attached? || @post.image.attached? %>
-      <%= link_to 'Download', download_post_path(@post), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
-    <% end %>
+    <div class="mt-4 flex gap-4 items-center">
+      <% if @post.video.attached? || @post.image.attached? %>
+        <%= link_to 'Download', download_post_path(@post), class: "rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+      <% end %>
 
-    <!-- User validations in the views -->
-    <% if current_user && current_user.id == @post.user_id %>
-      <div class="mt-4 flex gap-4">
+      <% if current_user && current_user.id == @post.user_id %>
         <%= link_to "Edit", edit_post_path(@post), 
-              class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+              class: "rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
 
         <%= button_to "Delete", post_path(@post), 
               method: :delete,
               data: { confirm: "Are you sure you want to delete this post?" },
-              class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
-      </div>
-    <% end %>
+              class: "rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+      <% end %>
+    </div>
 
 
   </div>
