@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   root "posts#index"
 
   get 'posts/:id/download', to: 'posts#download', as: 'download_post'
+  get 'pages/media'
 end

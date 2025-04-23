@@ -22,6 +22,9 @@
           <% if current_user %>
             <li>
               <%= link_to "Upload", new_post_path, class: "hover:text-gray-200" %>
+            </li> 
+            <li>
+              <%= link_to "My Videos", pages_media_path, class: "hover:text-gray-200" %>
             </li>
             <li>
               <%= button_to "Log Out", destroy_user_session_path, method: :delete, class: "hover:text-gray-200 bg-transparent" %>
@@ -35,7 +38,6 @@
             </li>
           <% end %>
         </ul>
-        <!-- Header Icons -->
       </div>
       <!-- Responsive navbar -->
       <%#= render "layouts/search_bar" %>
