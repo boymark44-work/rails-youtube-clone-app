@@ -22,7 +22,10 @@
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
 
-    <%= yield %>
+    <div class="container px-5 mx-auto content mt-28">
+      <%= yield %>
+    </div>
+    
 
     <%# Render the Footer %>
     <%= render 'layouts/footer' %>
