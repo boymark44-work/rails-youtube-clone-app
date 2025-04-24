@@ -10,6 +10,14 @@ class PostsController < ApplicationController
   # To prevent unnecessary database queries, preload attachments in the show action: 
   def show
     @post = Post.includes(video_attachment: :blob, image_attachment: :blob).find(params[:id])
+    @post.increment!(:views)
+
+    # # Track views uniquely by IP
+    # session[:viewed_posts] ||= []
+    # unless session[:viewed_posts].include?(@post.id)
+    #   @post.increment!(:views)
+    #   session[:viewed_posts] << @post.id
+    # end
   end
 
   
