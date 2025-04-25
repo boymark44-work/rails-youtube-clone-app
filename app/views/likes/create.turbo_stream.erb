@@ -1,0 +1,3 @@
+<%= turbo_stream.replace "like_toggle" do %>
+    <%= render partial: "posts/like_button", locals: { post: @post } %>
+<% end %>

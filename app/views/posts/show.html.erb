@@ -28,20 +28,22 @@
     </div>
     <br>
 
+    <div id="like-toggle">
+      <%= turbo_frame_tag "like_toggle" do %>
+        <% if current_user && @post.likes.exists?(user: current_user) %>
+          <%= button_to post_like_path(@post), method: :delete, data: { turbo_frame: "like_toggle", class: "text-red-500" } do %>
+            ❤️ Unlike (<%= @post.likes.count %>) <% end %>
+        <% else %>
+            <%= button_to post_like_path(@post), method: :post, data: { turbo_frame: "like_toggle" }, class: "text-gray-500" do %>
+            🤍 Like (<%= @post.likes.count %>) <% end %>
+        <% end %>
+      <% end %>
+    </div>
+
     <div class="mt-4 flex gap-4 items-center">
       <% if @post.video.attached? || @post.image.attached? %>
         <%= link_to 'Download', download_post_path(@post), class: "rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
       <% end %>
-
-      <div>
-        <% if @post.likes.exists?(user: current_user) %>
-          <%= button_to "Unlike", post_like_path(@post), method: :post, class: "btn btn-warning"  %>
-        <% else %>
-          <%= button_to "Like", post_like_path(@post), method: :post, class: "btn btn-primary"  %>
-        <% end %>
-        <span><%= @post.likes.count %> Likes</span>
-      </div>
-
 
       <% if current_user && current_user.id == @post.user_id %>
         <%= link_to "Edit", edit_post_path(@post), 
@@ -53,7 +55,6 @@
               class: "rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
       <% end %>
     </div>
-
 
   </div>
 </div>

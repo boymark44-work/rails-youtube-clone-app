@@ -1,0 +1,9 @@
+<%= turbo_frame_tag "like_toggle" do %>
+  <% if current_user && post.likes.exists?(user: current_user) %>
+    <%= button_to post_like_path(post), method: :delete, data: { turbo_frame: "like_toggle" }, class: "text-red-500" do %>
+      ❤️ Unlike (<%= post.likes.count %>) <% end %>
+  <% else %>
+    <%= button_to post_like_path(post), method: :post, data: { turbo_frame: "like_toggle" }, class: "text-gray-500" do %>
+      🤍 Like (<%= post.likes.count %>) <% end %>
+  <% end %>
+<% end %>

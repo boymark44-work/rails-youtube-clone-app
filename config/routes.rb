@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   # Resource and routes for Videos
   resources :posts do 
-    resource :like, only: [:create] # Singular resource because one like per user per post
+    resource :like, only: [:create, :destroy] # Singular resource because one like per user per post
   end
   
   get 'pages/media' # My videos route
