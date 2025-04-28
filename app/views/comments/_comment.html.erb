@@ -1,0 +1,9 @@
+<div class="comment p-3 border-b">
+    <!-- This displays a single comment (Without the form) -->
+    <p><strong><%= comment.user.username %>:</strong> <%= comment.body %> </p>
+
+    <div class="text-sm text-gray-500">
+        <%= time_ago_in_words(comment.created_at) %> ago
+    </div>
+
+</div>

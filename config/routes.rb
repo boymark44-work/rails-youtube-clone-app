@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   # Resource and routes for Videos
   resources :posts do 
     resource :like, only: [:create, :destroy] # Singular resource because one like per user per post
+    resources :comments # To generate routes for creating and destroying comments
   end
   
   get 'pages/media' # My videos route
