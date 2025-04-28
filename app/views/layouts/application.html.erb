@@ -13,19 +13,19 @@
   </head>
 
   <body class="flex flex-col min-h-screen">
-    <%# Render the Navbar %>
+    <!-- Render the Navbar --> 
     <%= render 'layouts/navbar' %>
 
-    <%# Flash Messages for User Authentication from Devise %>
+    <!-- Flash Messages for User Authentication from Devise -->
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
 
-    <%# Main content grows to push footer down %>
+    <!-- Main content grows to push footer down -->
     <main class="flex-grow container px-5 mx-auto mt-28">
       <%= yield %>
     </main>
     
-    <%# Render the Footer %>
+    <!-- Render the Footer -->
     <%= render 'layouts/footer' %>
   </body>
 </html>
