@@ -10,11 +10,9 @@
     <%= javascript_importmap_tags %>
 
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <%# <link rel="stylesheet" href="https://cdn.simplecss.org/simple.css"> %>
   </head>
 
-  <body>
+  <body class="flex flex-col min-h-screen">
     <%# Render the Navbar %>
     <%= render 'layouts/navbar' %>
 
@@ -22,11 +20,11 @@
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
 
-    <div class="container px-5 mx-auto content mt-28">
+    <%# Main content grows to push footer down %>
+    <main class="flex-grow container px-5 mx-auto mt-28">
       <%= yield %>
-    </div>
+    </main>
     
-
     <%# Render the Footer %>
     <%= render 'layouts/footer' %>
   </body>
