@@ -8,7 +8,8 @@ Rails.application.routes.draw do
     resources :comments # To generate routes for creating and destroying comments
   end
   
-  get 'pages/media' # My videos route
+  # "My Videos" route
+  get 'pages/media' 
   get 'posts/:id/download', to: 'posts#download', as: 'download_post' # Download video route
 
   # The Root Path

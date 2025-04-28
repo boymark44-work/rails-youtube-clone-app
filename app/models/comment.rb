@@ -3,4 +3,5 @@ class Comment < ApplicationRecord
   belongs_to :user  
 
   has_ancestry
+  validates :body, presence: true
 end

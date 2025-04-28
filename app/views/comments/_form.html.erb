@@ -1,5 +1,7 @@
-<%= form_with(model: [post, post.comments.new], local: true) do |f| %>
-    <%= f.hidden_field :parent_id, value: parent.try(:id) %>
+<%= form_with(model: [post, Comment.new], local: true) do |f| %>
+    <!-- &. = Safe Navigation Operator in Ruby. --->
+    <!-- Meaning "If parent exists? -> it gets the id otherwise pass the nil object so that it doesn't crash "-->
+    <%= f.hidden_field :parent_id, value: parent&.id %>
     <%= f.text_area :body, placeholder: "Write a comment....", rows: 2, class: "w-full p-2 rounded" %>
-    <%= f.submit "Post", class: "mt-2 bg-blue-500 text-white px-4 py-2 rounded" %>
+    <%= f.submit "Comment", class: "mb-10 bg-red-500 text-white px-4 py-2 rounded" %>
 <% end %>
