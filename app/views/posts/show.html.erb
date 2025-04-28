@@ -58,10 +58,6 @@
   </div>
 
   <div class="comment-section">
-    <!-- This is from the helper, encapsulating the Ruby code from the helper to avoid messy and hard-to-maintain code -->
-    <%#= render_comments(@post.comments.arrange) %>
-    <%#= render 'comments/form', post: @post, parent: nil %>
-
     <h3 class="mt-6 text-lg">Leave a Comment</h3>
     <%= render 'comments/form', post: @post, parent: nil %>
     
