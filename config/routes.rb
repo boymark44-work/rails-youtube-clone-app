@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
-  # Devise for Users
-  devise_for :users
+  # The Root Path
+  root 'posts#index'
+
+  # Download Video Route
+  get 'posts/:id/download', to: 'posts#download', as: 'download_post' # Download video route
+
+  # My Videos Route
+  get 'pages/media' 
 
   # Resource and routes for Videos
   resources :posts do 
@@ -8,12 +14,8 @@ Rails.application.routes.draw do
     resources :comments # To generate routes for creating and destroying comments
   end
   
-  # "My Videos" route
-  get 'pages/media' 
-  get 'posts/:id/download', to: 'posts#download', as: 'download_post' # Download video route
-
-  # The Root Path
-  root "posts#index"
+  # Devise for Users
+  devise_for :users
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
