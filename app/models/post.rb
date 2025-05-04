@@ -4,7 +4,7 @@ class Post < ApplicationRecord
     has_one_attached :image
     has_one_attached :video 
 
-    has_many :likes, dependent: :destroy 
+    has_many :likes, as: :likeable, dependent: :destroy 
     has_many :liked_users, through: :likes, source: :user
 
     has_many :comments, dependent: :destroy

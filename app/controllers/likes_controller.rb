@@ -3,7 +3,7 @@ class LikesController < ApplicationController
   before_action :set_post
   
   def create
-    @like = @post.likes.create(user: current_user)
+    @like = @post.likes.create(user: current_user, likeable: @post) # To make the association to likeable polymorphic object clear
     respond_to do |format|
       format.turbo_stream
       format.html { redirect_to @post }
@@ -11,7 +11,7 @@ class LikesController < ApplicationController
   end
 
   def destroy
-    @like = @post.likes.find_by(user: current_user)
+    @like = @post.likes.find_by(user: current_user, likeable: @post)
     @like.destroy if @like
       respond_to do |format|
         format.turbo_stream
