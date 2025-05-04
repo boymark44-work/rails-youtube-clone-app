@@ -14,6 +14,13 @@ Rails.application.routes.draw do
     resources :comments # To generate routes for creating and destroying comments
   end
   
+  # Notifications
+  resources :notifications, only: [:index, :update] do 
+    collection do 
+      patch :mark_all_read # This defines a collection route (no :id required) for PATCH requests
+    end
+  end
+  
   # Devise for Users
   devise_for :users
 

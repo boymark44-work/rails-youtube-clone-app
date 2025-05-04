@@ -18,14 +18,17 @@
           <%= link_to "My Videos", pages_media_path, class: "hover:text-gray-200" %>
         </li>
         <li>
-          <%= button_to "Log Out", destroy_user_session_path, method: :delete, class: "hover:text-gray-200 bg-transparent" %>
+          <%= link_to "🔔 Notifications (#{current_user.notifications.where(read: false).count})", notifications_path %>
+        </li>
+        <li>
+          <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "hover:text-gray-200" %>
         </li>
       <% else %>
         <li>
           <%= link_to "Sign up", new_user_registration_path, class: "hover:text-gray-200" %>
         </li>
         <li>
-          <%= link_to "Login", new_user_session_path, class: "bg-white hover:bg-gray-100 text-gray-800 py-2 px-4 border border-gray-400 rounded shadow" %>
+          <%= link_to "Login", new_user_session_path, class: "hover:text-gray-200" %>
         </li>
       <% end %>
     </ul>
