@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'profiles/edit'
-  get 'profiles/update'
   # The Root Path
   root 'posts#index'
 
@@ -13,7 +11,7 @@ Rails.application.routes.draw do
   # Resource and routes for Videos
   resources :posts do 
     resource :like, only: [:create, :destroy] # Singular resource because one like per user per post
-    resources :comments # To generate routes for creating and destroying comments
+    resources :comments # CRUD routes for Comments
   end
   
   # Notifications
