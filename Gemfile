@@ -20,6 +20,7 @@ gem "ancestry"
 
 group :development, :test do
   gem "debug", platforms: %i[mri windows]
+  gem 'faker'
 end
 
 group :development do
