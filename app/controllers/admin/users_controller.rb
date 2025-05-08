@@ -1,6 +1,10 @@
 class Admin::UsersController < Admin::BaseController
   def index
-    @users = User.includes(:posts).all 
+    #@users = User.includes(:posts).all 
+
+    # .page(params[:page]) => grabs the page number from the URL
+    # .per(10) => displays 10 user per page
+    @users = User.order(:created_at).page(params[:page]).per(10)
   end
 
   def edit

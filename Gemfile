@@ -17,6 +17,7 @@ gem "bootsnap", require: false
 gem "devise", '~> 4.9', '>= 4.9.4'
 gem 'ostruct', '~> 0.6.1' # To silence a particular error. 
 gem "ancestry"
+gem "kaminari"
 
 group :development, :test do
   gem "debug", platforms: %i[mri windows]
