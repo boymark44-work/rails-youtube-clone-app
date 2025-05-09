@@ -29,8 +29,14 @@ Rails.application.routes.draw do
 
   # Routes for Admin 
   namespace :admin do 
-    resources :users, only: [:index, :edit, :update, :destroy]
+    resources :users, only: [:index, :edit, :update, :destroy] do 
+      # Adding a nested routes for creating notes under users
+       resources :notes, only: [:new, :create]
+    end
   end
+
+  # Routes for Notes 
+  resources :notes, only: [:index]
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

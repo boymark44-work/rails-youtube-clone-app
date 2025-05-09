@@ -9,6 +9,13 @@ class NotificationsController < ApplicationController
     notification = current_user.notifications.find(params[:id])
     notification.update(read: true)
     redirect_to notification_path(notification.notifiable)
+
+    case notification.notifiable
+    when Note 
+      redirect_to notes_path 
+    else 
+      redirect_to root_path 
+    end
   end
 
   def mark_all_read

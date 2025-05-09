@@ -25,7 +25,7 @@
           <%= link_to admin_user_path(user), method: :delete, data: { confirm: "Are you sure?" }, class: "bg-red-600 text-white p-1 rounded" do %>
             🗑️
           <% end %>
-          <%= link_to "#", class: "bg-red-600 text-white p-1 rounded" do %>
+          <%= link_to new_admin_user_note_path(user), class: "bg-red-600 text-white p-1 rounded" do %>
             📝
           <% end %>
         </td>

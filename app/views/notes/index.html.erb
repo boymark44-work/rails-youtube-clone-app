@@ -1,0 +1,15 @@
+<h1 class="text-2xl font-bold mb-4">Your Notes</h1>
+
+<% if @notes.any? %>
+    <div class="space-y-4">
+        <% @notes.each do |note| %>
+            <div class="p-4 bg-white shadow rounded border">
+                <p class="text-gray-700"><strong>From:</strong> <%= note.sender.email %> </p>
+                <p class="text-gray-900 whitespace-pre-line"> <%= note.body %> </p>
+                <p class="text-sm text-gray-500"> <%= time_ago_in_words(note.created_at) %> ago</p>
+            </div>
+        <% end %>
+    </div>
+<% else %>
+    <p>No notes received yet.</p>
+<% end %>

@@ -1,0 +1,10 @@
+<h1 class="text-xl fond-bold mb-4">Send Note to <%= @user.first_name || @user.email %></h1>
+
+<%= form_with model: [ :admin, @user, @note ], local: true do |form| %>
+    <div class="mb-4">
+        <%= form.label :body, "Note", class: "block font-bold" %>
+        <%= form.text_area :body, class: "w-full border p-2 rounded", rows: 6 %>
+    </div>
+
+    <%= form.submit "Send Note", class: "bg-red-600 text-white p-2 rounded" %>
+<% end %>

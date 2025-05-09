@@ -13,4 +13,8 @@ class User < ApplicationRecord
 
   # User Notifications
   has_many :notifications, dependent: :destroy
+
+  # Adding the Admin and Regular User Associations
+  has_many :sent_notes, class_name: 'Note', foreign_key: 'sender_id', dependent: :destroy
+  has_many :received_notes, as: :recipient, class_name: 'Note', dependent: :destroy    
 end
