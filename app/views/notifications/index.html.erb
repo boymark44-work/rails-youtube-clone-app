@@ -9,20 +9,21 @@
   <ul class="space-y-3">
     <% current_user.notifications.order(created_at: :desc).each do |notification| %>
       <li class="border rounded p-4 <%= 'bg-gray-100' unless notification.read %>">
-        
         <% if notification.notifiable_type == "Like" %>
-            <% like = notification.notifiable %>
-            <% if like && like.likeable.is_a?(Post) %>
-                <p><strong><%= like.user.email %></strong> liked your video:</p>
-                <%= link_to like.likeable.title, post_path(like.likeable), class: "text-blue-500" %>
-            <% elsif like && like.likeable.is_a?(Comment) %>
-                <p><strong><%= like.user.email %></strong> liked your comment:</p>
-                <%= link_to "View Comment", post_path(like.likeable.post), class: "text-blue-500" %>
-            <% else %>
-                <p>No notifications.</p>
-            <% end %>
+          <% like = notification.notifiable %>
+          <% if like && like.likeable.is_a?(Post) %>
+            <p><strong><%= like.user.email %></strong> liked your video:</p>
+            <%= link_to like.likeable.title, post_path(like.likeable), class: "text-blue-500" %>
+          <% elsif like && like.likeable.is_a?(Comment) %>
+            <p><strong><%= like.user.email %></strong> liked your comment:</p>
+            <%= link_to "View Comment", post_path(like.likeable.post), class: "text-blue-500" %>
+          <% else %>
+            <p>Invalid like reference.</p>
+          <% end %>
+        <% else %>
+          <!-- Default fallback for other types, like Note -->
+          <p><%= link_to notification.message, notification_path(notification), method: :patch, class: "text-blue-500" %></p>
         <% end %>
-        
       </li>
     <% end %>
   </ul>

@@ -8,13 +8,14 @@ class NotificationsController < ApplicationController
   def update
     notification = current_user.notifications.find(params[:id])
     notification.update(read: true)
-    redirect_to notification_path(notification.notifiable)
-
+    
     case notification.notifiable
     when Note 
-      redirect_to notes_path 
+      return redirect_to notes_path 
+    when Like 
+      return redirect_to post_path(notification.notifiable.likeable)  
     else 
-      redirect_to root_path 
+      return redirect_to root_path 
     end
   end
 
