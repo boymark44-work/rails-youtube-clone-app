@@ -1,0 +1,28 @@
+nav.w-full.bg-red-600.shadow-md
+    .flex.items-center.justify-between.px-5.py-6.mx-auto.max-w-screen-xl
+        = link_to "Youtube-From-Temu", root_path, class: "text-3xl font-bold font-heading nav-title text-white"
+        ul.hidden.px-4.mx-auto.space-x-12.md:flex.font-heading.text-white
+
+            - if current_user&.admin?
+                li = link_to "Users", admin_users_path, class: "hover:text-gray-200"
+                li = link_to "Logout", destroy_user_session_path, method: :delete, class: "hover:text-gray-200"
+            
+            - elsif current_user
+                li = link_to "Notifications (#{current_user.notifications.where(read: false).count})", notifications_path, class: "hover:text-gray-200"
+                li = link_to "Notes", notes_path, class: "hover:text-gray-200"
+                li = link_to "My Videos", pages_media_path, class: "hover:text-gray-200"
+                li = link_to "Profile", edit_profile_path, class: "hover:text-gray-200"
+                li = link_to "Logout", destroy_user_session_path, method: :delete, class: "hover:text-gray-200"
+
+            - elsif author_signed_in?
+                li = link_to "Blogs", authors_blogs_path, class: "hover:text-gray-200"
+                li = link_to "Logout", destroy_author_session_path, method: :delete, class: "hover:text-gray-200"
+
+            - else 
+                li = link_to "Register as Regular User", new_user_registration_path, class: "hover:text-gray-200"
+                li = link_to "Login as Regular User", new_user_session_path, class: "hover:text-gray-200"
+                li = link_to "Register as Author", new_author_registration_path, class: "hover:text-gray-200"
+                li = link_to "Login as Author", new_author_session_path, class: "hover:text-gray-200"
+
+
+
