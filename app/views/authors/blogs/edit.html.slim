@@ -1,0 +1,12 @@
+h1.text-2xl.font-bold.mb-6 Edit Blog
+
+= form_with model: @blog, url: authors_blog_path(@blog), method: :patch, local: true do |f|
+    .mb-4
+        = f.label :title, class: "block text-gray-700"
+        = f.text_field :title, class: "w-full px-4 py-2 border rounded"
+
+    .mb-4
+        = f.label :content, class: "block text-gray-700"
+        = f.text_area :content, rows: 8, class: "w-full px-4 py-2 border rounded"
+
+    = f.submit "Update", class: "bg-yellow-600 text-white px-4 py-2 rounded" 

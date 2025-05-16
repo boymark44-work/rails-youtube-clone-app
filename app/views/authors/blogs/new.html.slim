@@ -2,11 +2,11 @@ h1.text-2xl.font-bold.mb-6 New Blog Post
 
 = form_with model: @blog, url: authors_blogs_path, local: true do |f|
     .mb-4
-        = f.label :title, class: "block font-medium"
+        = f.label :title, class: "block text-gray-700"
         = f.text_field :title, class: "w-full px-4 py-2 border rounded"
         
     .mb-4
-        = f.label :content, class: "block font-medium"
-        = f.text_area :content, class: "w-full h-40 px-4 py-2 border rounded"
+        = f.label :content, class: "block text-gray-700"
+        = f.text_area :content, rows: 8, class: "w-full h-40 px-4 py-2 border rounded"
     
     = f.submit "Publish Blog", class: "bg-blue-500 text-white px-4 py-2 rounded"

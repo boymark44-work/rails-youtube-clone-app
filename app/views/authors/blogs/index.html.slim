@@ -3,12 +3,16 @@ h1.text-3xl.mb-6 My Blogs
 = link_to "New Blog", new_authors_blog_path, class: "bg-green-500 text-white px-4 py-2 rounded"
 
 - if @blogs.any?
-    .space-y-4.mt-4
+    ul.mt-6.space-y-4
         - @blogs.each do |blog|
-            .p-4.bg-white.shadow.rounded
-                h2.text-xl.font-bold = blog.title
-                p.text-sm.text-gray-500 = blog.created_at.strftime('%B %e, %Y')
-                p.mt-2.text-gray-800 = truncate(blog.content, length: 300)
-- else
-    p.text-gray-600.mt-4 You have not written any blogs yet.
+            li.bg-white.shadow-md.p-4.rounded
+                h2.text-xl.font-bold.mb-1 = blog.title
+                p.text-gray-600.text-sm = blog.created_at.strftime("%b %d, %Y")
+                p.mt-2.text-gray-800 = truncate(blog.content, length: 120)
 
+                .mt-4.flex.gap-4
+                    = link_to "Edit", edit_authors_blog_path(blog), class: "text-blue-600"
+                    = link_to "Delete", authors_blog_path(blog), method: :delete, data: { confirm: "Are you sure?" }, class: "text-red-600" 
+
+- else
+    p.text-gray-600.mt-4 You haven't written any blogs yet.
