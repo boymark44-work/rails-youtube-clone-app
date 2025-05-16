@@ -42,10 +42,10 @@ Rails.application.routes.draw do
   devise_for :authors
 
   namespace :authors do
-    resources :blogs, only: [:index, :new, :create]
+    resources :blogs
   end
 
-  resources :blogs, only: [:index, :show] # This is for the Public Blogs View
+  #resources :blogs, only: [:index, :show] # This is for the Public Blogs View
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
