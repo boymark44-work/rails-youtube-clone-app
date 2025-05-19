@@ -11,7 +11,7 @@ class Admin::AuthorNotesController < Admin::BaseController
     @note.recipient_type = "Author"
     
     if @note.save 
-      Notification.create(
+      Notification.create!(
          recipient: @author,
          notifiable: @note,
          read: false, 
