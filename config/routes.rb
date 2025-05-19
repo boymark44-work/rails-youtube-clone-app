@@ -31,7 +31,11 @@ Rails.application.routes.draw do
   namespace :admin do 
     resources :users, only: [:index, :edit, :update, :destroy] do 
       # Adding a nested routes for creating notes under users
-       resources :notes, only: [:new, :create]
+      resources :notes, only: [:new, :create]
+    end
+
+    resources :authors, only: [:index] do 
+      resources :notes, controller: "author_notes", only: [:new, :create]
     end
   end
 

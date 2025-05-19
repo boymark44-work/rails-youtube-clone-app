@@ -4,7 +4,14 @@ nav.w-full.bg-red-600.shadow-md
         ul.hidden.px-4.mx-auto.space-x-12.md:flex.font-heading.text-white
 
             - if current_user&.admin?
-                li = link_to "Users", admin_users_path, class: "hover:text-gray-200"
+                / Highlight Active Link: Regular Users
+                - users_active = request.path.start_with?('admin/users')
+                li = link_to "Users", admin_users_path, class: "#{users_active ? 'text-yellow-300' : 'hover:text-gray-200'}"
+
+                / Highlight Active Link: Authors
+                - authors_active = request.path.start_with?('admin/authors')
+                li = link_to "Authors", admin_authors_path, class: "#{authors_active ? 'text-yellow-300' : 'hover:text-gray-200'}"
+                
                 li = link_to "Logout", destroy_user_session_path, method: :delete, class: "hover:text-gray-200"
             
             - elsif current_user

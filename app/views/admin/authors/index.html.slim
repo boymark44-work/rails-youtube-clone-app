@@ -1,0 +1,18 @@
+h1.text-2xl.font-bold.mb-6 Author Management 
+
+table.w-full.table-auto.border-collapse 
+    thead.bg-red-600.text-white  
+        tr 
+            th.p-2.text-left Email  
+            th.p-2.text-left Blogs  
+            th.p-2.text-left Actions 
+    
+    tbody.bg-white.text-gray-700
+        - @authors.each do |author|
+            tr 
+                td.p-2 = author.email 
+                td.p-2 = author.blogs.size   
+                td.p-2.flex.gap-2
+                    = link_to "Send Note", new_admin_author_note_path(author), class: "bg-blue-600 text-white px-2 py-1 rounded"
+
+= paginate @authors 
