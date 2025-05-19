@@ -19,9 +19,7 @@ nav.w-full.bg-red-600.shadow-md
                 li = link_to "Logout", destroy_author_session_path, method: :delete, class: "hover:text-gray-200"
 
             - else 
-                li = link_to "Register as Regular User", new_user_registration_path, class: "hover:text-gray-200"
                 li = link_to "Login as Regular User", new_user_session_path, class: "hover:text-gray-200"
-                li = link_to "Register as Author", new_author_registration_path, class: "hover:text-gray-200"
                 li = link_to "Login as Author", new_author_session_path, class: "hover:text-gray-200"
 
 
