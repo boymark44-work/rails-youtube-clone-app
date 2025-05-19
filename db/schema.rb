@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_05_16_055508) do
+ActiveRecord::Schema[7.1].define(version: 2025_05_19_084159) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -96,15 +96,16 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_16_055508) do
   end
 
   create_table "notifications", force: :cascade do |t|
-    t.bigint "user_id", null: false
     t.string "notifiable_type", null: false
     t.bigint "notifiable_id", null: false
     t.string "message"
     t.boolean "read"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "recipient_type", null: false
+    t.bigint "recipient_id", null: false
     t.index ["notifiable_type", "notifiable_id"], name: "index_notifications_on_notifiable"
-    t.index ["user_id"], name: "index_notifications_on_user_id"
+    t.index ["recipient_type", "recipient_id"], name: "index_notifications_on_recipient"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -138,5 +139,4 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_16_055508) do
   add_foreign_key "comments", "users"
   add_foreign_key "likes", "users"
   add_foreign_key "notes", "users", column: "sender_id"
-  add_foreign_key "notifications", "users"
 end
