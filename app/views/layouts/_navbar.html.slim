@@ -22,7 +22,9 @@ nav.w-full.bg-red-600.shadow-md
                 li = link_to "Logout", destroy_user_session_path, method: :delete, class: "hover:text-gray-200"
 
             - elsif author_signed_in?
+                li = link_to "Notifications (#{current_author.notifications.where(read: false).count})", authors_notifications_path, class: "hover:text-gray-200"
                 li = link_to "Blogs", authors_blogs_path, class: "hover:text-gray-200"
+                li = link_to "Notes", authors_notes_path, class: "hover:text-gray-200"
                 li = link_to "Logout", destroy_author_session_path, method: :delete, class: "hover:text-gray-200"
 
             - else 

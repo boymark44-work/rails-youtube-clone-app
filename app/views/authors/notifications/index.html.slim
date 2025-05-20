@@ -1,0 +1,14 @@
+h1.text-2xl.font-bold.mb-4 Notifications 
+
+- if current_author.notifications.unread.any? 
+= button_to "Mark All As Read", mark_all_as_read_authors_notifications_path, method: :patch,
+    class: "mb-4 px-2 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded"
+
+- if current_author.notifications.any? 
+    ul.space-y-3
+    - current_author.notifications.order(created_at: :desc).each do |notification|
+        li.border.rounded.p-4 class=(notification.read ? "" : "bg-gray-100")
+            = link_to notification.message, authors_notification_path(notification), data: { turbo_method: :patch }
+
+- else 
+    p You have no notifications.
