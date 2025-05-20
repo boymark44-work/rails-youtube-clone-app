@@ -12,7 +12,7 @@ class User < ApplicationRecord
   has_many :liked_posts, through: :likes, source: :post
 
   # User Notifications
-  has_many :notifications, dependent: :destroy
+  has_many :notifications, as: :recipient, dependent: :destroy
 
   # Adding the Admin and Regular User Associations
   has_many :sent_notes, class_name: 'Note', foreign_key: 'sender_id', dependent: :destroy

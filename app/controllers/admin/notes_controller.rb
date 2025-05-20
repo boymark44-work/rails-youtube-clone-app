@@ -1,3 +1,4 @@
+# This is the dedicated notes_controller for regular users. 
 class Admin::NotesController < Admin::BaseController
     before_action :set_user 
 
@@ -10,7 +11,7 @@ class Admin::NotesController < Admin::BaseController
         @note.recipient = @user    
 
         if @note.save
-            Notification.create!(
+            Notification.create(
                 user: @user,
                 notifiable: @note, 
                 read: false, 

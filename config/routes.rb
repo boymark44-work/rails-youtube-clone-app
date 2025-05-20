@@ -31,7 +31,11 @@ Rails.application.routes.draw do
   namespace :admin do 
     resources :users, only: [:index, :edit, :update, :destroy] do 
       # Adding a nested routes for creating notes under users
-       resources :notes, only: [:new, :create]
+      resources :notes, only: [:new, :create]
+    end
+
+    resources :authors, only: [:index] do 
+      resources :notes, controller: "author_notes", only: [:new, :create]
     end
   end
 
@@ -41,8 +45,17 @@ Rails.application.routes.draw do
   # Devise Routes for Authors
   devise_for :authors
 
+  # Routes for Authors
   namespace :authors do
     resources :blogs
+
+    resources :notifications, only: [:index, :update] do 
+      collection do 
+        patch :mark_all_as_read
+      end
+    end
+
+    resources :notes, only: [:index]
   end
 
   #resources :blogs, only: [:index, :show] # This is for the Public Blogs View

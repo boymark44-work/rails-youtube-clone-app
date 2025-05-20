@@ -6,4 +6,5 @@ class Author < ApplicationRecord
 
   has_many :blogs, dependent: :destroy 
   has_many :received_notes, as: :recipient, class_name: 'Note' 
+  has_many :notifications, as: :recipient, dependent: :destroy 
 end

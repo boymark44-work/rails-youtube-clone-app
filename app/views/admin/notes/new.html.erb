@@ -1,4 +1,4 @@
-<h1 class="text-xl fond-bold mb-4">Send Note to <%= @user.first_name || @user.email %></h1>
+<h1 class="text-2xl fond-bold mb-4">Send Note to <%= @user.first_name || @user.email %></h1>
 
 <%= form_with model: [ :admin, @user, @note ], local: true do |form| %>
     <div class="mb-4">
